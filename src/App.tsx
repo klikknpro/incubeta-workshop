@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import '../node_modules/react-vis/dist/style.css'
 import { XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis } from 'react-vis'
+import { Button } from '@mui/material'
+import ResponsiveAppBar from './ResponsiveAppBar'
 
 function App() {
   const updateData = () => {
@@ -39,16 +41,29 @@ function App() {
 
   return (
     <div className='App'>
+      <ResponsiveAppBar />
       <p>Lets put a chart here</p>
-      <button onClick={updateData}>Update meta data</button>
+      <Button
+        variant='contained'
+        color='secondary'
+        onClick={updateData}
+      >
+        Update meta data
+      </Button>
       <XYPlot
         height={300}
         width={300}
       >
         <XAxis />
         <YAxis />
-        <LineSeries data={meta} />
-        {/* <LineSeries data={dv360} /> */}
+        <LineSeries
+          data={meta}
+          color={'red'}
+        />
+        <LineSeries
+          data={dv360}
+          color={'green'}
+        />
       </XYPlot>
     </div>
   )
